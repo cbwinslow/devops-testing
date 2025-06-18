@@ -1,0 +1,10 @@
+# Global owners for all files
+* @cbwinslow
+
+# Specific ownership for critical components
+/scripts/ai_resolver.py @cbwinslow
+/scripts/monitor.sh @cbwinslow
+/tests/ @cbwinslow
+/.github/workflows/ @cbwinslow
+/config/ @cbwinslow
+

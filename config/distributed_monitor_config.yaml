@@ -1,0 +1,110 @@
+# Distributed Monitoring Configuration
+
+monitoring:
+  # General settings
+  interval: 60  # seconds between checks
+  metrics_port: 8000
+  alert_threshold: 5
+
+  # Node configuration
+  nodes:
+    - localhost
+    - 127.0.0.1:8001  # Example additional node
+    - 127.0.0.1:8002  # Example additional node
+
+  # Metric collection
+  metrics:
+    cpu_threshold: 80  # percentage
+    memory_threshold: 90  # percentage
+    disk_threshold: 85  # percentage
+    network_threshold: 1000000  # bytes/sec
+
+  # Alert configuration
+  alerts:
+    levels:
+      critical:
+        threshold: 10
+        interval: 30  # seconds
+      warning:
+        threshold: 5
+        interval: 60  # seconds
+      info:
+        threshold: 2
+        interval: 300  # seconds
+
+  # Logging configuration
+  logging:
+    level: INFO
+    retention: 30  # days
+    max_size: 100  # MB
+    backup_count: 5
+
+  # Security settings
+  security:
+    ssl_enabled: true
+    cert_path: "/etc/ssl/certs/monitoring.crt"
+    key_path: "/etc/ssl/private/monitoring.key"
+    allowed_ips:
+      - "127.0.0.1"
+      - "192.168.1.0/24"
+
+  # Storage settings
+  storage:
+    metrics_retention: 90  # days
+    alert_retention: 365  # days
+    compression: true
+    backup_enabled: true
+    backup_interval: 86400  # seconds (1 day)
+
+# Visualization settings (for Grafana)
+visualization:
+  grafana:
+    url: "http://localhost:3000"
+    dashboard_uid: "monitoring-overview"
+    refresh_interval: 30  # seconds
+
+# Machine Learning settings
+ml:
+  enabled: true
+  training:
+    interval: 86400  # seconds (1 day)
+    min_samples: 1000
+    features:
+      - "cpu_usage"
+      - "memory_usage"
+      - "disk_usage"
+      - "network_in"
+      - "network_out"
+  anomaly_detection:
+    sensitivity: 0.1  # false positive rate
+    window_size: 100  # samples
+    threshold: 3.0  # standard deviations
+
+# Integration settings
+integrations:
+  slack:
+    webhook_url: "{{SLACK_WEBHOOK_URL}}"
+    channel: "#monitoring"
+  email:
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    from_address: "blaine.winslow@gmail.com"
+    to_addresses:
+      - "blaine.winslow@gmail.com"
+
+# Recovery actions
+recovery:
+  auto_recovery: true
+  max_attempts: 3
+  cooldown_period: 300  # seconds
+  actions:
+    service_restart:
+      enabled: true
+      max_attempts: 2
+    disk_cleanup:
+      enabled: true
+      threshold: 90  # percentage
+    log_rotation:
+      enabled: true
+      max_size: 100  # MB
+
