@@ -1,0 +1,64 @@
+# AI Resolver Configuration
+
+# Notification settings
+notification:
+  slack_webhook: "{{SLACK_WEBHOOK_URL}}"  # Replace with actual webhook URL
+  email: "blaine.winslow@gmail.com"
+
+# Alert priorities (1-5, 5 being highest)
+priorities:
+  security: 5
+  permission: 4
+  config_change: 3
+  package: 2
+  general: 1
+
+# Resolution settings
+resolution:
+  max_retries: 3
+  retry_delay: 5  # seconds
+  timeout: 300    # seconds
+
+# Security settings
+security:
+  restricted_files:
+    - "/etc/shadow"
+    - "/etc/passwd"
+    - "/etc/group"
+  monitored_logs:
+    - "/var/log/auth.log"
+    - "/var/log/syslog"
+
+# Package management
+package_management:
+  allowed_sources:
+    - "ubuntu"
+    - "debian"
+  blacklisted_packages: []
+  update_check_interval: 3600  # seconds
+
+# Monitoring settings
+monitoring:
+  check_interval: 60  # seconds
+  log_retention: 30   # days
+  max_log_size: 1000  # MB
+
+# Reporting
+reporting:
+  format: "json"
+  retention: 90       # days
+  compress_after: 7   # days
+
+# File permissions
+permissions:
+  default_file: "644"
+  default_directory: "755"
+  secure_file: "640"
+  secure_directory: "750"
+
+# Git settings
+git:
+  main_branch: "main"
+  backup_branch: "backup"
+  commit_prefix: "AI-RESOLVER:"
+
