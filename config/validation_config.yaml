@@ -1,0 +1,30 @@
+# System Validation Configuration
+
+# Test execution settings
+retry_count: 3
+retry_delay: 5
+parallel_jobs: 4
+
+# Required directories to check
+required_directories:
+  - "/home/cbwinslow/devops-testing/tests"
+  - "/home/cbwinslow/devops-testing/config"
+  - "/home/cbwinslow/devops-testing/scripts"
+  - "/home/cbwinslow/devops-testing/reports"
+
+# File permissions
+permissions:
+  "/home/cbwinslow/devops-testing": "755"
+  "/home/cbwinslow/devops-testing/config": "750"
+  "/home/cbwinslow/devops-testing/reports": "755"
+  "/home/cbwinslow/devops-testing/tests": "755"
+  "/home/cbwinslow/devops-testing/scripts": "755"
+
+# Required packages
+required_packages:
+  - curl
+  - git
+  - yq
+  - jq
+  - shellcheck
+

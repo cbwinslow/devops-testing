@@ -1,0 +1,64 @@
+name: System Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl git yq jq shellcheck
+
+    - name: Set up directory structure
+      run: |
+        mkdir -p tests config scripts reports
+        chmod 755 tests config scripts reports
+
+    - name: Run system validation tests
+      run: |
+        bash tests/system_validation.sh
+      env:
+        CONFIG_FILE: ${{ github.workspace }}/config/validation_config.yaml
+        CBW_LOG_DIR: ${{ github.workspace }}/reports
+
+    - name: Security scan
+      uses: github/codeql-action/analyze@v2
+      with:
+        languages: shell
+
+    - name: Shellcheck
+      run: |
+        shellcheck tests/system_validation.sh
+
+    - name: Documentation validation
+      run: |
+        test -f README.md || (echo "README.md missing" && exit 1)
+        test -f CONTRIBUTING.md || (echo "CONTRIBUTING.md missing" && exit 1)
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: reports/
+
+    - name: Slack notification
+      uses: 8398a7/action-slack@v3
+      if: always()
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
