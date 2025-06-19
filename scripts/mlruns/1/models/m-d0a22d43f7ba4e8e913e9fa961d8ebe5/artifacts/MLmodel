@@ -1,0 +1,22 @@
+artifact_path: /home/cbwinslow/devops-testing/scripts/mlruns/1/models/m-d0a22d43f7ba4e8e913e9fa961d8ebe5/artifacts
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.4
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: xgb
+    xgb_version: 3.0.2
+mlflow_version: 3.1.0
+model_id: m-d0a22d43f7ba4e8e913e9fa961d8ebe5
+model_size_bytes: 443332
+model_uuid: m-d0a22d43f7ba4e8e913e9fa961d8ebe5
+prompts: null
+run_id: 0ec81010a7d54266902bc4a6b1ec8d07
+utc_time_created: '2025-06-19 07:15:04.698178'

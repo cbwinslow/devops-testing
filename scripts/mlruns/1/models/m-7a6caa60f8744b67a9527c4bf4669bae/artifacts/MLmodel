@@ -1,0 +1,23 @@
+artifact_path: /home/cbwinslow/devops-testing/scripts/mlruns/1/models/m-7a6caa60f8744b67a9527c4bf4669bae/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.13.4
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.7.1+cu126
+mlflow_version: 3.1.0
+model_id: m-7a6caa60f8744b67a9527c4bf4669bae
+model_size_bytes: 17049
+model_uuid: m-7a6caa60f8744b67a9527c4bf4669bae
+prompts: null
+run_id: af9683f25fb7487682917557233e90ab
+utc_time_created: '2025-06-19 07:14:19.865813'

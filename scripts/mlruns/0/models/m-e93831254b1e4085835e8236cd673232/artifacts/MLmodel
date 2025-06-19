@@ -1,0 +1,22 @@
+artifact_path: /home/cbwinslow/devops-testing/scripts/mlruns/0/models/m-e93831254b1e4085835e8236cd673232/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.0
+mlflow_version: 3.1.0
+model_id: m-e93831254b1e4085835e8236cd673232
+model_size_bytes: 763188
+model_uuid: m-e93831254b1e4085835e8236cd673232
+prompts: null
+run_id: a8a1ea628b7244bab2508006aa7947e6
+utc_time_created: '2025-06-19 07:09:30.178421'
